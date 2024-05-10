@@ -40,7 +40,7 @@ on:
 
 # Variables.
 env:
-  package: xxxxxxxx
+  package: grep
 
 jobs:
   build-tarball:
