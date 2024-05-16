@@ -204,7 +204,7 @@ jobs:
             export CPPFLAGS="-Wall"
             export PCRE_CFLAGS=
             export PCRE_LIBS=-lpcre2-8
-            ./build-on.sh '${{ env.package }}' '' 'make' 'apk add pcre2'
+            ./build-on.sh '${{ env.package }}' '' 'make' 'apk add pcre2 pcre2-dev'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -247,8 +247,9 @@ jobs:
       - run: pwd
       # Install Homebrew packages.
       # List of packages: https://formulae.brew.sh/
-      # - run: brew install ...
+      - run: brew install pcre2
       - run: |
+          ls -l ${HOMEBREW_PREFIX-/usr/local}/*/pcre2.h ${HOMEBREW_PREFIX-/usr/local}/*/*/pcre2.h ${HOMEBREW_PREFIX-/usr/local}/*/*/*/pcre2.h ${HOMEBREW_PREFIX-/usr/local}/*/*/*/*/pcre2.h ${HOMEBREW_PREFIX-/usr/local}/*/libpcre2-8* ${HOMEBREW_PREFIX-/usr/local}/*/*/libpcre2-8* ${HOMEBREW_PREFIX-/usr/local}/*/*/*/libpcre2-8* ${HOMEBREW_PREFIX-/usr/local}/*/*/*/*/libpcre2-8* || true
           pwd
           export CPPFLAGS="-Wall"
           export PCRE_CFLAGS=
