@@ -36,8 +36,15 @@ rm -f .gitmodules
 date --utc --iso-8601 > .tarball-version
 ./bootstrap --no-git --gnulib-srcdir="$GNULIB_SRCDIR"
 
+# Build in a subdirectory.
+# This avoids a failure of the gen-ChangeLog target, due to the existence
+# of a build-aux/git-log-fix file, in combination with our use of
+# 'git clone --depth 1' above.
+mkdir build
+cd build
+
 # Configure (uses package 'file').
-./configure --config-cache --disable-perl-regexp CPPFLAGS="-Wall" > log1 2>&1; rc=$?; cat log1; test $rc = 0 || exit 1
+../configure --config-cache --disable-perl-regexp CPPFLAGS="-Wall" > log1 2>&1; rc=$?; cat log1; test $rc = 0 || exit 1
 # Build (uses packages make, gcc, ...).
 make > log2 2>&1; rc=$?; cat log2; test $rc = 0 || exit 1
 # Run the tests.
