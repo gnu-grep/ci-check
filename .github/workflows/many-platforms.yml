@@ -104,7 +104,9 @@ jobs:
       - run: |
           pwd
           export CPPFLAGS="-Wall"
-          ./build-on.sh '${{ env.package }}' '' 'make'
+          export PCRE_CFLAGS=
+          export PCRE_LIBS=-lpcre2-8
+          ./build-on.sh '${{ env.package }}' '' 'make' 'sudo apt install libpcre2-dev'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -117,6 +119,11 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-linux-gnu-centos:
@@ -146,7 +153,9 @@ jobs:
             cd /work
             ls -l
             export CPPFLAGS="-Wall"
-            ./build-on.sh '${{ env.package }}' '' 'make'
+            export PCRE_CFLAGS=
+            export PCRE_LIBS=-lpcre2-8
+            ./build-on.sh '${{ env.package }}' '' 'make' 'yum -y install pcre2-devel'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -159,6 +168,11 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-linux-alpine:
@@ -188,7 +202,9 @@ jobs:
             cd /work
             ls -l
             export CPPFLAGS="-Wall"
-            ./build-on.sh '${{ env.package }}' '' 'make'
+            export PCRE_CFLAGS=
+            export PCRE_LIBS=-lpcre2-8
+            ./build-on.sh '${{ env.package }}' '' 'make' 'apk add pcre2'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -201,6 +217,11 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-macos:
@@ -230,7 +251,9 @@ jobs:
       - run: |
           pwd
           export CPPFLAGS="-Wall"
-          ./build-on.sh '${{ env.package }}' '' 'make'
+          export PCRE_CFLAGS=
+          export PCRE_LIBS=-lpcre2-8
+          ./build-on.sh '${{ env.package }}' '' 'make' 'brew install pcre2'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -243,6 +266,11 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-freebsd:
@@ -277,7 +305,9 @@ jobs:
             ls -l
             export CPPFLAGS="-I/usr/local/include -Wall"
             export LDFLAGS="-L/usr/local/lib"
-            ./build-on.sh '${{ env.package }}' '' 'make'
+            export PCRE_CFLAGS=
+            export PCRE_LIBS=-lpcre2-8
+            ./build-on.sh '${{ env.package }}' '' 'make' 'pkg install -y pcre2'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -290,6 +320,11 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-netbsd:
@@ -325,7 +360,9 @@ jobs:
             ls -l
             export CPPFLAGS="-I/usr/pkg/include -Wall"
             export LDFLAGS="-L/usr/pkg/lib"
-            ./build-on.sh '${{ env.package }}' '' 'make'
+            export PCRE_CFLAGS=
+            export PCRE_LIBS=-lpcre2-8
+            ./build-on.sh '${{ env.package }}' '' 'make' '/usr/sbin/pkg_add pcre2'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -338,6 +375,11 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-openbsd:
@@ -375,7 +417,9 @@ jobs:
             ls -l
             export CPPFLAGS="-I/usr/local/include -Wall"
             export LDFLAGS="-L/usr/local/lib"
-            ./build-on.sh '${{ env.package }}' '' 'make'
+            export PCRE_CFLAGS=
+            export PCRE_LIBS=-lpcre2-8
+            ./build-on.sh '${{ env.package }}' '' 'make' 'pkg_add pcre2'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -388,6 +432,11 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-solaris11:
@@ -423,7 +472,9 @@ jobs:
             ls -l
             export CPPFLAGS="-Wall"
             export CC="gcc -m64"
-            ./build-on.sh '${{ env.package }}' '' 'make'
+            export PCRE_CFLAGS=
+            export PCRE_LIBS=-lpcre2-8
+            ./build-on.sh '${{ env.package }}' '' 'make' 'pkg install pcre2'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -436,6 +487,11 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-solaris11-omnios:
@@ -469,7 +525,9 @@ jobs:
             pwd
             ls -l
             export CPPFLAGS="-Wall"
-            ./build-on.sh '${{ env.package }}' '' 'gmake'
+            export PCRE_CFLAGS=
+            export PCRE_LIBS=-lpcre2-8
+            ./build-on.sh '${{ env.package }}' '' 'gmake' 'pkg install library/pcre2'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -482,6 +540,11 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-cygwin:
@@ -512,7 +575,7 @@ jobs:
           platform: ${{ matrix.bitness == 32 && 'x86' || 'x86_64' }}
           # Install Cygwin packages.
           # List of packages: https://cygwin.com/packages/package_list.html
-          packages: gcc-core make
+          packages: gcc-core make libpcre2-devel
       - name: cygcheck
         run: cygcheck -V
       - name: cygcheck
@@ -532,7 +595,9 @@ jobs:
       - name: Build in Cygwin
         run: |
           export CPPFLAGS="-Wall"
-          ./build-on.sh '${{ env.package }}' '' 'make'
+          export PCRE_CFLAGS=
+          export PCRE_LIBS=-lpcre2-8
+          ./build-on.sh '${{ env.package }}' '' 'make' ':'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -545,6 +610,11 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-mingw:
@@ -577,7 +647,7 @@ jobs:
           platform: x86_64
           # Install Cygwin packages.
           # List of packages: https://cygwin.com/packages/package_list.html
-          packages: ${{ matrix.bitness == 32 && 'mingw64-i686-gcc-core mingw64-i686-headers mingw64-i686-runtime' || 'mingw64-x86_64-gcc-core mingw64-x86_64-headers mingw64-x86_64-runtime' }} make
+          packages: ${{ matrix.bitness == 32 && 'mingw64-i686-gcc-core mingw64-i686-headers mingw64-i686-runtime mingw64-i686-pcre2' || 'mingw64-x86_64-gcc-core mingw64-x86_64-headers mingw64-x86_64-runtime mingw64-x86_64-pcre2' }} make
       - name: cygcheck
         run: cygcheck -V
       - name: cygcheck
@@ -600,7 +670,9 @@ jobs:
           PATH=/usr/${{ matrix.bitness == 32 && 'i686' || 'x86_64' }}-w64-mingw32/sys-root/mingw/bin:$PATH
           export CPPFLAGS="-Wall"
           export CC=${{ matrix.bitness == 32 && 'i686' || 'x86_64' }}-w64-mingw32-gcc
-          ./build-on.sh '${{ env.package }}' '--host=${{ matrix.bitness == 32 && 'i686' || 'x86_64' }}-w64-mingw32' 'make'
+          export PCRE_CFLAGS=
+          export PCRE_LIBS=-lpcre2-8
+          ./build-on.sh '${{ env.package }}' '--host=${{ matrix.bitness == 32 && 'i686' || 'x86_64' }}-w64-mingw32' 'make' ':'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -613,6 +685,11 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-msvc:
@@ -703,7 +780,7 @@ jobs:
           export STRIP=":"
           export AR="`pwd`/ar-lib lib"
           export RANLIB=":"
-          ./build-on.sh '${{ env.package }}' '--host=${{ matrix.bitness == 32 && 'i686' || 'x86_64' }}-w64-mingw32' 'make'
+          ./build-on.sh '${{ env.package }}' '--host=${{ matrix.bitness == 32 && 'i686' || 'x86_64' }}-w64-mingw32' 'make' ''
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -716,6 +793,11 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
   # This is not a platform-specific test, but very useful for finding bugs.
@@ -744,7 +826,9 @@ jobs:
           export CC="clang -fsanitize=address,undefined,signed-integer-overflow,shift,integer-divide-by-zero"
           export CFLAGS="-O0 -fno-omit-frame-pointer -ggdb"
           export ASAN_OPTIONS="detect_leaks=0 abort_on_error=1 allocator_may_return_null=1"
-          ./build-on.sh '${{ env.package }}' '' 'make'
+          export PCRE_CFLAGS=
+          export PCRE_LIBS=-lpcre2-8
+          ./build-on.sh '${{ env.package }}' '' 'make' 'sudo apt install libpcre2-dev'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -757,5 +841,10 @@ jobs:
             ${{ env.package }}-*/build/config.status
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
           retention-days: 7
           overwrite: true
