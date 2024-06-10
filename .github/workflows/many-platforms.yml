@@ -258,8 +258,8 @@ jobs:
       - run: |
           ls -l ${HOMEBREW_PREFIX-/usr/local}/*/pcre2.h ${HOMEBREW_PREFIX-/usr/local}/*/*/pcre2.h ${HOMEBREW_PREFIX-/usr/local}/*/*/*/pcre2.h ${HOMEBREW_PREFIX-/usr/local}/*/*/*/*/pcre2.h ${HOMEBREW_PREFIX-/usr/local}/*/libpcre2-8* ${HOMEBREW_PREFIX-/usr/local}/*/*/libpcre2-8* ${HOMEBREW_PREFIX-/usr/local}/*/*/*/libpcre2-8* ${HOMEBREW_PREFIX-/usr/local}/*/*/*/*/libpcre2-8* || true
           pwd
-          export CPPFLAGS="-Wall"
-          export PCRE_CFLAGS=
+          export CPPFLAGS="-I${HOMEBREW_PREFIX-/usr/local}/include -Wall"
+          export PCRE_CFLAGS="-L${HOMEBREW_PREFIX-/usr/local}/lib"
           export PCRE_LIBS=-lpcre2-8
           ./build-on.sh '${{ env.package }}' '' 'make' 'brew install pcre2'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
