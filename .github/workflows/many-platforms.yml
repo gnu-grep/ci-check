@@ -486,7 +486,7 @@ jobs:
             env | LC_ALL=C sort
             pwd
             ls -l
-            export CPPFLAGS="-I/usr/include/pcre2 -Wall"
+            export CPPFLAGS="-I/usr/include/pcre -Wall"
             export CC="gcc -m64"
             export PCRE_CFLAGS=
             export PCRE_LIBS=-lpcre2-8
