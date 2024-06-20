@@ -54,7 +54,7 @@ jobs:
       - run: pwd
       # Install Ubuntu packages.
       # List of packages: https://packages.ubuntu.com/
-      - run: sudo apt install autopoint gettext texlive-base texlive-latex-base
+      - run: sudo apt update; sudo apt install autopoint gettext texlive-base texlive-latex-base
       - run: |
           ./build-tarball.sh '${{ env.package }}'
       # Doc: https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
@@ -101,13 +101,13 @@ jobs:
       - run: pwd
       # Install Ubuntu packages.
       # List of packages: https://packages.ubuntu.com/
-      # - run: sudo apt install ...
+      # - run: sudo apt update; sudo apt install ...
       - run: |
           pwd
           export CPPFLAGS="-Wall"
           export PCRE_CFLAGS=
           export PCRE_LIBS=-lpcre2-8
-          ./build-on.sh '${{ env.package }}' '' 'make' 'sudo apt install libpcre2-dev'
+          ./build-on.sh '${{ env.package }}' '' 'make' 'sudo apt update; sudo apt install libpcre2-dev'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -842,7 +842,7 @@ jobs:
       - run: pwd
       # Install Ubuntu packages.
       # List of packages: https://packages.ubuntu.com/
-      # - run: sudo apt install ...
+      # - run: sudo apt update; sudo apt install ...
       - run: |
           pwd
           export CPPFLAGS="-Wall"
@@ -851,7 +851,7 @@ jobs:
           export ASAN_OPTIONS="detect_leaks=0 abort_on_error=1 allocator_may_return_null=1"
           export PCRE_CFLAGS=
           export PCRE_LIBS=-lpcre2-8
-          ./build-on.sh '${{ env.package }}' '' 'make' 'sudo apt install libpcre2-dev'
+          ./build-on.sh '${{ env.package }}' '' 'make' 'sudo apt update; sudo apt install libpcre2-dev'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
