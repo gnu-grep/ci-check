@@ -107,7 +107,7 @@ jobs:
           export CPPFLAGS="-Wall"
           export PCRE_CFLAGS=
           export PCRE_LIBS=-lpcre2-8
-          ./build-on.sh '${{ env.package }}' '' 'make' 'sudo apt update; sudo apt install libpcre2-dev && sudo localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8 && sudo localedef -i ja_JP -f EUC-JP ja_JP.EUC-JP && sudo localedef -i ru_RU -f KOI8-R ru_RU.KOI8-R && sudo localedef -i tr_TR -f UTF-8 tr_TR.UTF-8 && sudo localedef -i zh_CN -f GB18030 zh_CN.GB18030'
+          ./build-on.sh '${{ env.package }}' '' 'make' 'sudo apt update; sudo apt install libpcre2-dev && sudo localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8 && sudo localedef -i ja_JP -f EUC-JP ja_JP.EUC-JP && sudo localedef -i ru_RU -f KOI8-R ru_RU.KOI8-R && sudo localedef -i tr_TR -f UTF-8 tr_TR.UTF-8 && sudo localedef -i zh_CN -f GB18030 zh_CN.GB18030 && sudo localedef -i zh_HK -f BIG5HKSCS zh_HK.BIG5HKSCS'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -160,7 +160,7 @@ jobs:
             export CPPFLAGS="-Wall"
             export PCRE_CFLAGS=
             export PCRE_LIBS=-lpcre2-8
-            ./build-on.sh '${{ env.package }}' '' 'make' 'yum -y install pcre2-devel perl glibc-common && localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8 && localedef -i ja_JP -f EUC-JP ja_JP.EUC-JP && localedef -i ru_RU -f KOI8-R ru_RU.KOI8-R && localedef -i tr_TR -f UTF-8 tr_TR.UTF-8 && localedef -i zh_CN -f GB18030 zh_CN.GB18030'
+            ./build-on.sh '${{ env.package }}' '' 'make' 'yum -y install pcre2-devel perl glibc-common && localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8 && localedef -i ja_JP -f EUC-JP ja_JP.EUC-JP && localedef -i ru_RU -f KOI8-R ru_RU.KOI8-R && localedef -i tr_TR -f UTF-8 tr_TR.UTF-8 && localedef -i zh_CN -f GB18030 zh_CN.GB18030 && localedef -i zh_HK -f BIG5HKSCS zh_HK.BIG5HKSCS'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -215,7 +215,7 @@ jobs:
             export CPPFLAGS="-Wall"
             export PCRE_CFLAGS=
             export PCRE_LIBS=-lpcre2-8
-            ./build-on.sh '${{ env.package }}' '' 'make' 'yum -y install pcre2-devel perl glibc-locale-source && localedef -i en_US -f UTF-8 en_US.UTF-8 && localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8 && localedef -i ja_JP -f EUC-JP ja_JP.EUC-JP && localedef -i ru_RU -f KOI8-R ru_RU.KOI8-R && localedef -i tr_TR -f UTF-8 tr_TR.UTF-8 && localedef -i zh_CN -f GB18030 zh_CN.GB18030'
+            ./build-on.sh '${{ env.package }}' '' 'make' 'yum -y install pcre2-devel perl glibc-locale-source && localedef -i en_US -f UTF-8 en_US.UTF-8 && localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8 && localedef -i ja_JP -f EUC-JP ja_JP.EUC-JP && localedef -i ru_RU -f KOI8-R ru_RU.KOI8-R && localedef -i tr_TR -f UTF-8 tr_TR.UTF-8 && localedef -i zh_CN -f GB18030 zh_CN.GB18030 && localedef -i zh_HK -f BIG5HKSCS zh_HK.BIG5HKSCS'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
