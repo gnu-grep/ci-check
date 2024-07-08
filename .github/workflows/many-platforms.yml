@@ -160,7 +160,7 @@ jobs:
             export CPPFLAGS="-Wall"
             export PCRE_CFLAGS=
             export PCRE_LIBS=-lpcre2-8
-            ./build-on.sh '${{ env.package }}' '' 'make' 'yum -y install pcre2-devel'
+            ./build-on.sh '${{ env.package }}' '' 'make' 'yum -y install pcre2-devel perl'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -215,7 +215,7 @@ jobs:
             export CPPFLAGS="-Wall"
             export PCRE_CFLAGS=
             export PCRE_LIBS=-lpcre2-8
-            ./build-on.sh '${{ env.package }}' '' 'make' 'yum -y install pcre2-devel'
+            ./build-on.sh '${{ env.package }}' '' 'make' 'yum -y install pcre2-devel perl'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -266,7 +266,7 @@ jobs:
             export CPPFLAGS="-Wall"
             export PCRE_CFLAGS=
             export PCRE_LIBS=-lpcre2-8
-            ./build-on.sh '${{ env.package }}' '' 'make' 'apk add pcre2 pcre2-dev'
+            ./build-on.sh '${{ env.package }}' '' 'make' 'apk add pcre2 pcre2-dev perl'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -374,7 +374,7 @@ jobs:
             export LDFLAGS="-L/usr/local/lib"
             export PCRE_CFLAGS=
             export PCRE_LIBS=-lpcre2-8
-            ./build-on.sh '${{ env.package }}' '' 'make' 'pkg install -y pcre2'
+            ./build-on.sh '${{ env.package }}' '' 'make' 'pkg install -y pcre2 perl5'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -431,7 +431,7 @@ jobs:
             export LDFLAGS="-L/usr/pkg/lib"
             export PCRE_CFLAGS=
             export PCRE_LIBS=-lpcre2-8
-            ./build-on.sh '${{ env.package }}' '' 'make' '/usr/sbin/pkg_add pcre2'
+            ./build-on.sh '${{ env.package }}' '' 'make' '/usr/sbin/pkg_add pcre2 perl'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
