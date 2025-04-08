@@ -30,7 +30,7 @@ git clone --depth 1 https://git.savannah.gnu.org/git/gnulib.git
 # Apply patches.
 (cd "$package" && patch -p1 < ../patches/ubsan.diff)
 # Prepare for bootstrap.conf:bootstrap_post_import_hook.
-echo "aclocal is in: "`type aclocal`
+type aclocal
 cp pkg.m4 /usr/share/aclocal/pkg.m4
 cp pkg.m4 `aclocal --print-ac-dir`/pkg.m4
 
