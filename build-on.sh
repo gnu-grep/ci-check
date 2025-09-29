@@ -45,7 +45,7 @@ cd build
 
 host_os=`sed -n -e 's/^S\["host_os"\]="\(.*\)"$/\1/p' config.status`
 case "$host_os" in
-  *-musl* | netbsd* | openbsd* | cygwin*) expect_test_failures=true ;;
+  netbsd* | openbsd* | cygwin*) expect_test_failures=true ;;
   *) expect_test_failures=false ;;
 esac
 
