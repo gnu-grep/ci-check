@@ -2,11 +2,12 @@ diff --git a/bootstrap.conf b/bootstrap.conf
 index 5a7b5d2..0c93654 100644
 --- a/bootstrap.conf
 +++ b/bootstrap.conf
-@@ -22,6 +22,7 @@ avoided_gnulib_modules='
+@@ -22,6 +22,8 @@ avoided_gnulib_modules='
    --avoid=mbrlen-tests
    --avoid=mbrtowc-tests
    --avoid=update-copyright-tests
 +  --avoid=memchr-tests
++  --avoid=strncpy-tests
  '
  
  # gnulib modules used by this package.
